@@ -25,7 +25,9 @@ Este bot de Discord permite a los usuarios inscribirse en cursos a través de un
 
 ```bash
 git clone https://github.com/tuusuario/discord-inscripciones-bot.git
-cd discord-inscripciones-bot
+cd enrollment-bot-discord
+
+
 ```
 
 2. **Instala dependencias**
