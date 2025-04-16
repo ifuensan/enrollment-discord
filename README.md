@@ -9,15 +9,11 @@ Este bot de Discord permite a los usuarios inscribirse en cursos a través de un
 - Guarda: nombre de usuario, curso, y correo electrónico
 - Integra con Google Sheets
 
----
-
 ## ⚙️ Requisitos
 
 - Python 3.9 o superior
 - Una cuenta de Google con acceso a Google Sheets
 - Un servidor de Discord donde tengas permisos de administrador
-
----
 
 ## 🧰 Instalación
 
@@ -26,8 +22,6 @@ Este bot de Discord permite a los usuarios inscribirse en cursos a través de un
 ```bash
 git clone https://github.com/tuusuario/discord-inscripciones-bot.git
 cd enrollment-bot-discord
-
-
 ```
 
 2. **Instala dependencias**
@@ -65,8 +59,6 @@ pip install -r requirements.txt
 python bot.py
 ```
 
----
-
 ## ✨ Cómo usar
 
 En un canal donde el bot tenga acceso:
@@ -81,8 +73,6 @@ El bot preguntará por:
 
 Y guardará la información en la hoja de cálculo configurada.
 
----
-
 ## 📂 Estructura del proyecto
 
 ```
@@ -92,8 +82,6 @@ Y guardará la información en la hoja de cálculo configurada.
 ├── README.md
 └── requirements.txt
 ```
-
----
 
 ## 🧪 Dependencias
 
@@ -105,16 +93,12 @@ gspread
 oauth2client
 ```
 
----
-
 ## 📌 Próximas mejoras (sugerencias)
 
 - Interfaz con botones (`discord.ui`)
 - Validación de correos
 - Notificación por DM
 - Panel de administración en web
-
----
 
 ## 🛡️ Licencia
 
