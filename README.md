@@ -66,6 +66,7 @@ python bot.py
 ```
 
 8. **Invita al bot a tu servidor**
+
 En la misma app, ve a "OAuth2" > URL Generator
 Selecciona:
 - bot y applications.commands
