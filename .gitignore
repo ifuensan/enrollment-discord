@@ -1,0 +1,8 @@
+.env
+credentials.json
+__pycache__/
+*.pyc
+venv/  # Si usas un entorno virtual
+.venv/
+/logs/ # Si tienes un directorio de logs
+
