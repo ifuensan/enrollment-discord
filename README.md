@@ -30,6 +30,12 @@ cd enrollment-bot-discord
 pip install -r requirements.txt
 ```
 
+3. **Prepara la variables de entorno**
+
+```bash
+cp .env.sample .env
+```
+
 3. **Configura Google Sheets**
 
 - Ve a [Google Cloud Console](https://console.cloud.google.com/)
