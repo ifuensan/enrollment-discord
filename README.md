@@ -30,13 +30,13 @@ cd enrollment-bot-discord
 pip install -r requirements.txt
 ```
 
-3. **Prepara la variables de entorno**
+4. **Prepara la variables de entorno**
 
 ```bash
 cp .env.sample .env
 ```
 
-3. **Configura Google Sheets**
+5. **Configura Google Sheets**
 
 - Ve a [Google Cloud Console](https://console.cloud.google.com/)
 - Crea un nuevo proyecto
@@ -52,18 +52,28 @@ cp .env.sample .env
   - Añade una hoja llamada `Respuestas`
   - Encabezados: `Nombre de usuario | Curso | Correo`
 
-4. **Configura Discord Bot**
+6. **Configura Discord Bot**
 
 - Ve a [Discord Developer Portal](https://discord.com/developers/applications)
 - Crea una nueva aplicación y añade un bot
 - Activa `Message Content Intent`
 - Copia el Token y pégalo en tu archivo `bot.py`
 
-5. **Ejecuta el bot**
+7. **Ejecuta el bot**
 
 ```bash
 python bot.py
 ```
+
+8. **Invita al bot a tu servidor**
+En la misma app, ve a "OAuth2" > URL Generator
+Selecciona:
+- bot y applications.commands
+- En “Bot Permissions” marca:
+  - Send Messages
+  - Read Message History
+Copia el URL generado abajo, pégalo en el navegador y añádelo a tu servidor.
+
 
 ## ✨ Cómo usar
 
