@@ -5,4 +5,5 @@ __pycache__/
 venv/  # Si usas un entorno virtual
 .venv/
 /logs/ # Si tienes un directorio de logs
+bot2.py
 
