@@ -112,6 +112,7 @@ Inclúyelas en un archivo `requirements.txt`:
 discord.py
 gspread
 oauth2client
+python-dotenv
 ```
 
 ## 📌 Próximas mejoras (sugerencias)
