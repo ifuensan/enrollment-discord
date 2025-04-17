@@ -57,7 +57,11 @@ cp .env.sample .env
 - Ve a [Discord Developer Portal](https://discord.com/developers/applications)
 - Crea una nueva aplicación y añade un bot
 - Activa `Message Content Intent`
-- Copia el Token y pégalo en tu archivo `bot.py`
+- Copia el Token y pégalo en tu archivo `.env`
+
+```bash
+DISCORD_TOKEN="TU_TOKEN_AQUÍ"
+```
 
 ### 7. **Ejecuta el bot**
 
