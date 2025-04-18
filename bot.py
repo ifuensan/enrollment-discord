@@ -92,6 +92,7 @@ async def inscribirme(interaction: discord.Interaction):
 
     sheet.append_row([interaction.user.name, curso.content, correo.content])
     await interaction.followup.send("✅ ¡Gracias! Te hemos inscrito correctamente.", ephemeral=True)
+    await mostrar_valoracion(interaction, sheet)
 
 
 # Comando para valorar el proceso
@@ -122,7 +123,25 @@ async def valorar(interaction: discord.Interaction):
             if fila[0] == nombre:
                 columna_valoracion = len(fila) + 1 if len(fila) < 4 else 4  # por si ya existe
                 sheet.update_cell(i + 1, columna_valoracion, valor)
-                break    
+                break 
+
+async def mostrar_valoracion(interaction, sheet):
+    view = ValoracionView()
+    await interaction.followup.send(
+        "📝 ¿Cómo valorarías el proceso de inscripción?", view=view, ephemeral=True
+    )
+    await view.wait()
+
+    if view.valor_seleccionada:
+        nombre = interaction.user.name
+        valor = view.valor_seleccionada
+
+        filas = sheet.get_all_values()
+        for i, fila in enumerate(filas):
+            if fila[0] == nombre:
+                columna_valoracion = len(fila) + 1 if len(fila) < 4 else 4
+                sheet.update_cell(i + 1, columna_valoracion, valor)
+                break   
 
 @bot.event
 async def on_ready():
