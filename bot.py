@@ -7,7 +7,7 @@ import os
 from dotenv import load_dotenv
 from datetime import datetime
 from discord.ui import Button, View
-from functions import obtener_cursos_abiertos, obtener_todos_cursos
+from functions import obtener_cursos_abiertos, obtener_todos_cursos, es_correo_valido
 
 load_dotenv()
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
@@ -87,8 +87,15 @@ async def inscribirme(interaction: discord.Interaction):
         return m.author.id == interaction.user.id and m.channel.id == interaction.channel_id
 
     curso = await bot.wait_for("message", check=check)
+    
     await interaction.followup.send("✉️ ¿Cuál es tu correo electrónico?", ephemeral=True)
-    correo = await bot.wait_for("message", check=check)
+    #correo = await bot.wait_for("message", check=check)
+    while True:
+        correo = await bot.wait_for("message", check=check)
+        if es_correo_valido(correo.content):
+            break
+        else:
+            await interaction.followup.send("❌ Ese correo no parece válido. Intenta de nuevo (ej. nombre@dominio.com)", ephemeral=True)
 
     sheet.append_row([interaction.user.name, curso.content, correo.content])
     await interaction.followup.send("✅ ¡Gracias! Te hemos inscrito correctamente.", ephemeral=True)

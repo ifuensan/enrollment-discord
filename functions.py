@@ -1,5 +1,10 @@
 # functions
 from datetime import datetime
+import re
+
+def es_correo_valido(correo: str) -> bool:
+    patron = r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
+    return re.match(patron, correo) is not None
 
 def obtener_todos_cursos(client):
     try:
