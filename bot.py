@@ -63,9 +63,6 @@ async def myping(interaction: discord.Interaction):
 #@app_commands.guilds(discord.Object(id=1360683780104392916))
 async def inscribirme(interaction: discord.Interaction):
     
-    #CANAL_PERMITIDO_ID = 1362179670908604536  
-    # 🛠️ ID del canal de suscripciones
-
     if interaction.channel_id != CANAL_PERMITIDO_ID:
         await interaction.response.send_message(
             f"❌ Este comando solo se puede usar en <#{CANAL_PERMITIDO_ID}>.",
