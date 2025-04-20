@@ -7,7 +7,7 @@ import os
 from dotenv import load_dotenv
 from datetime import datetime
 from discord.ui import Button, View
-from functions import obtener_cursos_abiertos, obtener_todos_cursos, es_correo_valido
+from functions import obtener_cursos_abiertos2, obtener_todos_cursos, es_correo_valido
 
 load_dotenv()
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
@@ -73,7 +73,8 @@ async def inscribirme(interaction: discord.Interaction):
     # Primera y única respuesta inicial
     await interaction.response.send_message("🔄 Obteniendo lista de cursos...", ephemeral=True)
     
-    cursos = obtener_todos_cursos(client)  # o cursos_abiertos
+    #cursos = obtener_todos_cursos(client)  # o cursos_abiertos
+    cursos = obtener_cursos_abiertos2(client)
     lista_cursos = "\n".join([f"• {curso}" for curso in cursos])
     mensaje = f"📚 ¿A qué curso te quieres inscribir?\n\n{lista_cursos}"
     
