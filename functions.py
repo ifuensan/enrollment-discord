@@ -1,5 +1,6 @@
 # functions
 from datetime import datetime
+import pandas as pd
 import unicodedata
 import re
 
@@ -59,7 +60,7 @@ def obtener_cursos_abiertos(client):
         print(f"⚠️ Error al leer los cursos: {e}")
         return [] 
     
-def obtener_cursos_abiertos2(client):
+def obtener_cursos_abiertos3(client):
     try:
         hoja = client.open("Master Calendar Courses 2025 ").worksheet("Courses ready")
         filas = hoja.get_all_values()
@@ -96,4 +97,47 @@ def obtener_cursos_abiertos2(client):
 
     except Exception as e:
         print(f"⚠️ Error al leer los cursos: {e}")
+        return []
+
+def obtener_cursos_abiertos2(client):
+    try:
+        hoja = client.open("Master Calendar Courses 2025 ").worksheet("Courses ready")
+        datos = hoja.get_all_records()
+        df = pd.DataFrame(datos)
+
+        hoy = datetime.now()
+        cursos_abiertos = []
+
+        for index, row in df.iterrows():
+            nombre = str(row.get("Course Name (English)", "")).strip()
+            fecha_open = str(row.get("Applications open", "")).strip()
+            fecha_close = str(row.get("Applications closed", "")).strip()
+
+            if not nombre or not fecha_open or not fecha_close:
+                continue
+
+            try:
+                    # Eliminar comas al final
+                fecha_open_limpia = fecha_open.replace(",", "").strip()
+                fecha_close_limpia = fecha_close.replace(",", "").strip()
+                
+                # Parsear fechas sin año → usar año actual
+                fecha_open_dt = datetime.strptime(fecha_open_limpia, "%A %B %d")
+                fecha_close_dt = datetime.strptime(fecha_close_limpia, "%A %B %d")
+
+                if fecha_open_dt.year == 1900:
+                    fecha_open_dt = fecha_open_dt.replace(year=hoy.year)
+                    fecha_close_dt = fecha_close_dt.replace(year=hoy.year)
+
+                if fecha_open_dt <= hoy <= fecha_close_dt:
+                    cursos_abiertos.append(nombre)
+
+            except ValueError as e:
+                print(f"❌ Error con '{nombre}': {e} → '{fecha_open}' / '{fecha_close}'")
+                continue
+
+        return sorted(set(cursos_abiertos))
+
+    except Exception as e:
+        print(f"⚠️ Error al procesar hoja de cálculo: {e}")
         return []
